@@ -19,15 +19,14 @@ guess = input("What letter would you like to guess?")
 # Check to see if player1's guess is valid: is it a single letter? 
 
 # <Long version>
-if len(guess) == 1 and guess in valid_letters:
-    print("Good guess!")
-else:
-    print("Oops! That is not a valid input.")
+#if len(guess) == 1 and guess in valid_letters:
+#    print("Good guess!")
+#else:
+#    print("Oops! That is not a valid input.")
 
 ### <Short version, Refactor #1>
-# print("Good guess!") if len(guess) == 1 and guess in valid_letters else print("Oops! That is not a valid input.")
+print("Good guess!") if len(guess) == 1 and guess in valid_letters else print("Oops! That is not a valid input.")
 
 ### <function created, Refactor #2>
-# valid_guess = lambda guess: print("Good guess!") if len(guess) == 1 and guess in valid_letters else print("Oops! That is not a valid input.")
-# valid_guess(guess)
-
+#def guess_response(guess):
+#    return print("Good guess!") if len(guess) == 1 and guess in valid_letters else print("Oops! That is not a valid input.")
