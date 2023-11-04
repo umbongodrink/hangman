@@ -7,5 +7,11 @@ This is an implementation of the Hangman game, where the computer thinks of a wo
 ENVIRONMENT:
 This project was undertaken using a Conda/Miniconda environment, with Python 3.8
 
+INSTALLATION NOTES:
+Please run the file _____ . 
+
 WIP:
 There is presently a WIP branch that is used for the developent code. 
+
+LICENSE:
+Please refer to information can be found in LICENSE.md.
