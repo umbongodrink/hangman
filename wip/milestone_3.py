@@ -2,13 +2,13 @@
 import random
 
 word_list = ["Apple", "Mango", "Kiwi", "Blueberries", "Raspberries"]
+word_to_guess = random.choice(word_list)
 
-word = random.choice(word_list)
 
 # This function will check if player1's letter is in the chosen word.
 def check_guess(guess):
     guess = guess.lower()
-    if guess in word:
+    if guess in word_to_guess:
         print(f"Good guess! {guess} is in the word.")
     else:
         print(f"Sorry, {guess} is not in the word. Try again.")
