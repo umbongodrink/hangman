@@ -3,7 +3,49 @@ import random
 
 
 class Hangman:
+    ''' A Class to define objects that form a game of Hangman.
+        The computer chooses a word at random from a pre-defined list.
+        The player, who has a set number of lives then uses guesses of letters
+        to try and figure-out the word. For every wrong guess, the player loses
+        a life.
+    
 
+    Parameters:
+    ----------
+    word_list: list
+        A list of five words used in the game.
+    num_lives: int
+        The number of lives (or guesses) the player has in the game. Default is 5.
+
+    Attributes:
+    ----------
+    word: str
+        The word to be guessed by the player. Chosen at random from the word_list.
+    word_guessed: list
+        A list of ('blank') strings, denoted by '_' underscores, that represent 
+        unguessed letters in the word. As the player correctly guesses a letter,
+        the blank string is replaced by the letter in the list.
+    num_letters: int
+        The number of unique letters in the word to be guessed.
+    list_of_guesses: list
+        An empty list that is populated by each letter guessed by the player
+
+    Methods:
+    -------
+    check_guess(guess)
+        Checks if the player's letter guess is in the word. 
+        If it is, the player is informed of this, and the number of letters to
+        be guessed is decreased. 
+        If it is not, the player is informed of this, and the number of guesses
+        or lives is decreased.
+
+    ask_for_input()
+        The game asks the player for a guess.
+        If the player inputs a non-valid single alphanumeric letter, they are
+        informed as such.
+        Otherwise, the input is passed to the check_guess function.
+    '''
+    
     def __init__(self, word_list, num_lives=5):
         self.word_list = word_list
         self.num_lives = num_lives
@@ -13,7 +55,7 @@ class Hangman:
         self.num_letters = len(set(self.word.lower()))
         self.list_of_guesses = []
 
-    def check_guess(self, guess):
+    def __check_guess(self, guess):
         guess = guess.lower()
         if guess in self.word:
             print(f"Good guess! {guess} is in the word.")
@@ -37,5 +79,5 @@ class Hangman:
             elif guess in self.list_of_guesses:
                 print("You already tried that letter!")
             else:
-                self.check_guess(guess)
+                self.__check_guess(guess)
                 self.list_of_guesses.append(guess)
