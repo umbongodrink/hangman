@@ -6,6 +6,8 @@ This is an implementation of the Hangman game, where the computer thinks of a wo
 The game is pre-populated with a list of 5 fruits that the player is asked to guess. 
 
 
+
+
 INSTALLATION NOTES:
 This project is written in Python 3.8 and therefore requires installation of it or a higher version:
 https://www.python.org/downloads/ 
