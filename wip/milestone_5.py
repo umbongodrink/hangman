@@ -1,6 +1,4 @@
-### MILESTONE 4
 import random
-
 
 class Hangman:
     ''' A Class to define objects that form a game of Hangman.
@@ -45,7 +43,7 @@ class Hangman:
         informed as such.
         Otherwise, the input is passed to the check_guess function.
     '''
-    
+
     def __init__(self, word_list, num_lives=5):
         self.word_list = word_list
         self.num_lives = num_lives
@@ -62,26 +60,47 @@ class Hangman:
             for index, letter in enumerate(self.word):
                     if letter == guess:
                         self.word_guessed[index] = guess
-            #rint(self.word_guessed)
+            print(f"The state of the game is: {self.word_guessed}.")
             self.num_letters -= 1
-            #print(self.num_letters)
         else:
             self.num_lives -= 1
             print(f"Sorry, {guess} is not in the word.")
             print(f"You have {self.num_lives} lives left.")
 
     def ask_for_input(self):
-        while True:
-            guess = input("Please choose a letter...")
-            print(guess)
-            if len(guess) != 1 or guess.isalpha == False:
-                print("Invalid letter. Please, enter a single alphabetical character.")
-            elif guess in self.list_of_guesses:
-                print("You already tried that letter!")
-            else:
-                self.__check_guess(guess)
-                self.list_of_guesses.append(guess)
+        guess = input("\nPlease choose a letter...")
+        print(f"You guessed: {guess}.")
+        if len(guess) != 1 or guess.isalpha == False:
+            print("Invalid letter. Please, enter a single alphabetical character.")
+        elif guess in self.list_of_guesses:
+            print("You already tried that letter!")
+        else:
+            self.__check_guess(guess)
+            self.list_of_guesses.append(guess)
 
+def play_game(word_list):
+    num_lives = 5
+    game = Hangman(word_list, num_lives)
+    while True:
+        if game.num_lives == 0:
+            print("\nYou lost!\U0001F623\n")
+            break
+        elif game.num_lives > 0 and game.num_letters == 0:
+            print(f"\nCongratulations.\U0001F973 You won the game! The word was: '{game.word}'!\n")
+            break
+        elif game.num_letters > 0:
+            game.ask_for_input()           
+    response = input("Do you want to play again? [type yes/no] ")
+    if response.lower() == "yes":
+        play_game(word_list)
+    elif response.lower() == "no":
+        print("Thanks for playing!\U0001F609\n")
+    else:
+            print(
+            "Sorry I didn't understand your response.\U0001F914 \
+            \nThanks for playing.\
+            \nBy the way, if you ever want to play again, just type ===> 'python3 milestone_5.py'.\n")
+
+if __name__ == "__main__":
+    play_game(["apple", "mango", "kiwi", "blueberries", "raspberries"])
     
-    if __name__ == "main":
-        ask_for_input()
