@@ -28,4 +28,6 @@ This project was specifically intended to give the developer practical familiari
 CONTRIBUTE:
 If you feel that you would like to make any comments or suggestions for improvement, please do so via submitting an Issue in the repository. All feedback is most welcome! 
 
+ACKNOWLEDGEMENTS:
+The 'stick' drawing is taken from the following URL: https://realpython.com/python-hangman/
 
