@@ -1,4 +1,5 @@
 import random
+from drawing import draw_hanged_man as dhm
 
 class Hangman:
     ''' A Class to define objects that form a game of Hangman.
@@ -44,14 +45,16 @@ class Hangman:
         Otherwise, the input is passed to the check_guess function.
     '''
 
-    def __init__(self, word_list, num_lives=5):
+    def __init__(self, word_list, num_lives=6):
         self.word_list = word_list
         self.num_lives = num_lives
+        self.draw_state = 0
 
         self.word = random.choice(word_list)
         self.word_guessed = ['_' for _ in self.word]
         self.num_letters = len(set(self.word.lower()))
         self.list_of_guesses = []
+        self.draw_state = 0
 
     def __check_guess(self, guess):
         guess = guess.lower()
@@ -61,15 +64,18 @@ class Hangman:
                     if letter == guess:
                         self.word_guessed[index] = guess
             print(f"The state of the game is: {self.word_guessed}.")
+            print(dhm(self.draw_state))
             self.num_letters -= 1
         else:
             self.num_lives -= 1
+            self.draw_state += 1
             print(f"Sorry, {guess} is not in the word.")
             print(f"You have {self.num_lives} lives left.")
+            print(f"The state of the game is:")
+            print(dhm(self.draw_state))
 
     def ask_for_input(self):
         guess = input("\nPlease choose a letter...")
-        print(f"You guessed: {guess}.")
         if len(guess) != 1 or guess.isalpha == False:
             print("Invalid letter. Please, enter a single alphabetical character.")
         elif guess in self.list_of_guesses:
@@ -79,14 +85,14 @@ class Hangman:
             self.list_of_guesses.append(guess)
 
 def play_game(word_list):
-    num_lives = 5
+    num_lives = 6
     game = Hangman(word_list, num_lives)
     while True:
         if game.num_lives == 0:
-            print("\nYou lost!\U0001F623\n")
+            print("\nYou lost! The man is hanged! \U0001F623 \n")
             break
         elif game.num_lives > 0 and game.num_letters == 0:
-            print(f"\nCongratulations.\U0001F973 You won the game! The word was: '{game.word}'!\n")
+            print(f"\nCongratulations - the man was saved from hanging! \U0001F973\nYou won the game, the word was: '{game.word}'!\n")
             break
         elif game.num_letters > 0:
             game.ask_for_input()           
@@ -99,8 +105,9 @@ def play_game(word_list):
             print(
             "Sorry I didn't understand your response.\U0001F914 \
             \nThanks for playing.\
-            \nBy the way, if you ever want to play again, just type ===> 'python3 Hangman.py'.\n")
+            \nBy the way, if you ever want to play again, just type ===> 'python3 milestone_5.py'.\n")
+
 
 if __name__ == "__main__":
-    play_game(["apple", "mango", "kiwi", "blueberries", "raspberries"])
+    play_game(["clementine", "mango", "kiwi", "blueberries", "raspberries"])
     
